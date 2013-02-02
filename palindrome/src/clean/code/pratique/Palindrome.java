@@ -3,40 +3,40 @@ package clean.code.pratique;
 public class Palindrome {
 	static public boolean isPalindrome(String value) {
 
-		int min = 0;
-		int max = value.length() - 1;
+		int leftIndex = 0;
+		int rigthIndex = value.length() - 1;
 
 		while (true) {
-			if (min > max) {
+			if (leftIndex > rigthIndex) {
 				return true;
 			}
 
-			char a = value.charAt(min);
-			char b = value.charAt(max);
+			char leftChar = value.charAt(leftIndex);
+			char rightChar = value.charAt(rigthIndex);
 
 			// Scan forward for a while invalid.
-			while (!Character.isLetterOrDigit(a)) {
-				min++;
-				if (min > max) {
+			while (!Character.isLetterOrDigit(leftChar)) {
+				leftIndex++;
+				if (leftIndex > rigthIndex) {
 					return true;
 				}
-				a = value.charAt(min);
+				leftChar = value.charAt(leftIndex);
 			}
 
 			// Scan backward for b while invalid.
-			while (!Character.isLetterOrDigit(b)) {
-				max--;
-				if (min > max) {
+			while (!Character.isLetterOrDigit(rightChar)) {
+				rigthIndex--;
+				if (leftIndex > rigthIndex) {
 					return true;
 				}
-				b = value.charAt(max);
+				rightChar = value.charAt(rigthIndex);
 			}
 
-			if (Character.toLowerCase(a) != Character.toLowerCase(b)) {
+			if (Character.toLowerCase(leftChar) != Character.toLowerCase(rightChar)) {
 				return false;
 			}
-			min++;
-			max--;
+			leftIndex++;
+			rigthIndex--;
 		}
 	}
 
